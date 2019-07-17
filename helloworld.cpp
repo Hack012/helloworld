@@ -7,12 +7,13 @@ CONTRACT helloworld: public contract {//class 전체
     using contract::contract;
 
     ACTION hi(name user) { //'hi'라는 action을 지정해줌
-      check(has_auth("wonwonwonwon"_n)||has_auth("bschild12345"_n), "your not owner");//check함수 특징: 내가 에러메세지와 접근명을 설정할 수 있다.
-       //has_auth():참 거짓을 판명해줌, 거짓 일 경우 뒤에 설정한 에러메세지가 나온다.
-       //require_auth(user); //권한을 지정해줄 수 있다: action을 실행하는 주체가 'user'가 아니면 실행을 못한다.
+      require_auth(user);
+      print("hello, ", user);
+    }
 
-        print("hello, ",user);
-       
+    ACTION getaccount(name user) {//존재하는 계정인가 안하는 계정인가
+      require_auth( get_self() );
+      print( is_account(user) );
     }
 
     private:
