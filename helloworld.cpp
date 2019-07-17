@@ -11,7 +11,7 @@ CONTRACT helloworld: public contract {//class 전체
       print("hello, ", user);
     }
 
-    ACTION getaccount(name user) {//존재하는 계정인가 안하는 계정인가
+    ACTION getaccount(name user) {//존재하는 계정인가 안하는 계정인가(계정의 존재여부 확인하는 action 생성)
       require_auth( get_self() );
       print( is_account(user) );
     }
